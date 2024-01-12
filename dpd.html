@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Barre latérale avec des dropdowns imbriqués</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-3">
+        <div class="sidebar">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Accueil</a>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                 <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Separated link</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">One more separated link</a></li>
+                 </ul>
+             </li>
+             
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="menu1" data-toggle="dropdown">Menu 1</a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-submenu">
+                  <a class="dropdown-item dropdown-toggle" href="#" id="submenu1" data-toggle="dropdown">Sous-menu 1.1</a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Sous-menu 1.1.1</a></li>
+                    <li><a class="dropdown-item" href="#">Sous-menu 1.1.2</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown-submenu">
+                  <a class="dropdown-item dropdown-toggle" href="#" id="submenu2" data-toggle="dropdown">Sous-menu 1.2</a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Sous-menu 1.2.1</a></li>
+                    <li><a class="dropdown-item" href="#">Sous-menu 1.2.2</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="menu2" data-toggle="dropdown">Menu 2</a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-submenu">
+                  <a class="dropdown-item dropdown-toggle" href="#" id="submenu3" data-toggle="dropdown">Sous-menu 2.1</a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Sous-menu 2.1.1</a></li>
+                    <li><a class="dropdown-item" href="#">Sous-menu 2.1.2</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown-submenu">
+                  <a class="dropdown-item dropdown-toggle" href="#" id="submenu4" data-toggle="dropdown">Sous-menu 2.2</a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Sous-menu 2.2.1</a></li>
+                    <li><a class="dropdown-item" href="#">Sous-menu 2.2.2</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-9">
+        <!-- Contenu principal -->
+      </div>
+    </div>
+  </div>
+</body>
+</html>

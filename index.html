@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Achat</title>
+    <link rel="stylesheet" href="sb-admin-2.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <style>
+        .lwa:hover .bi-whatsapp {
+            color: green;
+        }
+
+        .content {
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 290px;
+            background-color: rgb(55, 55, 66);
+        }
+
+        .sidebar li:hover {
+            background-color: white;
+        }
+
+        .sidebar li:hover a {
+            color: black;
+        }
+
+        .sidebar li.active {
+            background-color: white;
+        }
+
+        .sidebar li.active a {
+            color: black;
+            font-weight: bold;
+        }
+
+        .sidebar li a {
+            color: white;
+        }
+
+        .sidebar ul li ul li a {
+            color: black;
+        }
+
+        #side_nav {
+            display: block;
+        }
+
+        @media(min-width:768px) {
+            #side_nav {
+                display: block;
+            }
+        }
+
+        @media(max-width:767px) {
+            #side_nav {
+                display: none;
+                position: fixed;
+                z-index: 1;
+                height: 100%;
+            }
+        }
+
+        .modal-content{
+            left: -50%;
+            height: 600px;
+            width: 950px;
+        }
+        #md_delete{
+            overflow: visible;
+            left: 0%;
+            height: 300px;
+            width: 400px;
+        }
+        #table{
+            width: 2000px;
+        }
+        .navbar{
+            background-color: rgb(55, 55, 66);
+        }
+
+        .accordion-button{
+            background-color: rgb(55, 55, 66);
+        }
+        .accordion-collapse{
+            background-color: rgb(55, 55, 66);
+        }
+        .accordion-item{
+            border: none;
+        }
+        .modal-header{
+            background-color: rgb(55, 55, 66);
+        }
+        .btn-close{
+            background-color: white;
+        }
+        .main-container{
+            background-color: rgb(230, 230, 230);
+        }
+        .nm1{
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 15px;
+        }
+        .select{
+            width: 170px;
+            height: 28.5px;
+        }   
+           
+        .tableau2{
+            height: 100px;
+        }
+        #modal_delete{
+            overflow: visible;
+            left: 30%;
+            height: 300px;
+            width: 500px;
+        }
+
+        .premier{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .second{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .deux{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .deux label{
+            padding-right: 10px;
+            font-weight: bold;
+
+        }
+        .details_produits{
+            overflow-y: auto;
+            border-bottom: 1px solid grey;
+        }
+        .mon_tableau{
+            height: 200px;
+            width: 999px;
+            overflow-x: auto;
+            margin-top: 10px;
+        }
+        .mon_tableaud{
+            height: 350px;
+        }
+        .autre{
+            width: 1300px;
+        }
+        .champs_autre{
+            margin-top: -15px;
+            width: 1500px;
+        }
+        #ref{
+            width: 185px;
+        }
+        #des{
+            width: 195px;
+        }
+        #qte{
+            width: 171px;
+        }
+        #pht{
+            width: 159px;
+        }
+        #ptt{
+            width: 170px;
+        }
+        #tax{
+            width: 140px;
+        }
+        #com{
+            width: 205px;
+        }
+        #tot{
+            width: 10px;
+        }
+        .champs{
+            display: flex;
+            flex-direction: row;
+        }
+        .un{
+            display: flex;
+            flex-direction: column;
+        }
+        .add{
+            margin-top: 20px;
+            margin-left: 83%;
+        }
+        .contenir-onglets{
+            width: 100%;
+            height: 10%;
+            display: flex;
+            border-bottom: 1px solid black;
+        }
+
+        .onglets{
+            width: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 500;
+            font-size: 20px;
+            cursor: pointer;
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        .onglets:not(:nth-child(4)){
+            border-right: 1px solid black;
+        }
+
+        .contenu {
+            width: 100%;
+            position: absolute;
+            opacity: 0;
+        }
+
+        .active{
+            background-color: rgb(82, 89, 97);
+            color: white;
+            transition: all 0.3 ease;
+        }
+
+        .activeContenu{
+            animation: fade 0.5s forwards;
+        }
+
+
+        @keyframes fade {
+            from {
+                opacity: 0;
+            }
+            to{
+                opacity: 1;
+            }
+        }
+
+        .les_contenus{
+            height: 400px;
+            width: 100%;
+        }
+
+        .validite{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        .debut{
+            display: flex;
+            flex-direction: row;
+        }
+        .fin{
+            display: flex;
+            flex-direction: row;
+        }
+
+        #champsContainer{
+            margin-bottom: 30px;
+        }
+
+        .ligne{
+            display: flex;
+            flex-direction: row;
+        }
+        .modal input{
+            width: 420px;
+        }
+        .modal-body{
+            height: 450px;
+            width: 940px;
+            overflow-y: auto;
+            overflow-x: auto;
+        }
+        .tiltle1{
+            border-bottom: 0.5px solid rgb(55, 55, 66);
+            margin-top: 10px;
+            margin-bottom: 30px;
+            padding-left: 5px;
+        }
+        .tiltle{
+            border-bottom: 0.5px solid rgb(55, 55, 66);
+            margin-bottom: 30px;
+            margin-top: 20px;
+            padding-left: 5px;
+        }
+        input[type=text], select{
+            margin-bottom: 10px;
+        }
+        
+        .dimension{
+            display: flex;
+            flex-direction: row;
+        }
+        .dimension input{
+            width: 120px;
+        }
+        .dimension input[type=text]{
+            border-top: none;
+        }
+        #poids input[type=text]{
+            width: 550px;
+        }
+        #coef{
+            width: 300px;
+        }
+        #pdf{
+            justify-content: space-between;
+            display: flex;
+            flex-direction: row;
+        }
+        .jours{
+            width: 150px;
+            border: none;
+        }
+        #readonly{
+            width: 200px;
+        }
+        thead{
+            border-top: 1px solid grey;
+        }
+        tbody{
+            border-top: 1px solid grey; 
+            border-bottom: 1px solid grey;
+        }
+        th, td{
+            border-left: 1px solid grey; 
+            border-right: 1px solid grey;
+        }
+    </style>
+</head>
+
+<body class="p-0 m-0">
+    <div class="main-container d-flex">
+        <div class="sidebar" id="side_nav">
+            <div class="header-box d-flex justify-content-between align-items-center p-3">
+                <button class="btn bg-white open-btn d-md-none d-block" onclick="appear() ">
+                    <i class="bi bi-filter-left text-black fw-bolder fs-4"></i>
+                </button>
+                <a href="#" class="navbar-brand fw-bolder text-white fs-5 ms-md-4 ms-0">
+                    <span class="bg-white text-black rounded shadow px-1">POLYGONE</span>+
+                </a>
+            </div>
+            <div class="accordion me-1" >
+                <div class="accordion-item">
+                    <h4 class="accordion-header">
+                        <button class="accordion-button collapsed fw-bold fs-15 text-white" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#collapse01" aria-expanded="true"
+                            aria-controls="collapse01">
+                            Article
+                        </button>
+                    </h4>
+                    <div id="collapse01" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <ul class="list-style-none mb-0">
+                                <li class="dropdown-item px-0 py-1"><a class="text-decoration-none"
+                                        href="produit.html">Produit</a></li>
+                                <li class="dropdown-item px-0 py-1"><a class="text-decoration-none"
+                                        href="famille.html">Famille </a>
+                                </li>
+                                <li class="dropdown-item px-0 py-1"><a class="text-decoration-none"
+                                    href="parametre_article.html">Paramètre </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion me-1" >
+                <div class="accordion-item">
+                    <h4 class="accordion-header">
+                        <button class="accordion-button collapsed fw-bold fs-15 text-white" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#collapse0" aria-expanded="true"
+                            aria-controls="collapse0">
+                            Données / Partenaires
+                        </button>
+                    </h4>
+                    <div id="collapse0" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <ul class="list-style-none mb-0">
+                                <li class="dropdown-item px-0 py-1"><a class="text-decoration-none"
+                                        href="fsseur.html">Fournisseurs</a></li>
+                                <li class="dropdown-item px-0 py-1"><a class="text-decoration-none"
+                                        href="cli.html">Clients </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>    
+            <div class="accordion me-1">
+                <div class="accordion-item">
+                    <h4 class="accordion-header">
+                        <button class="accordion-button collapsed fw-bold fs-15 text-white" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true"
+                            aria-controls="collapse1">
+                            Achat
+                        </button>
+                    </h4>
+                    <div id="collapse1" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <ul class="list-style-none mb-0">
+                                <li class="dropdown-item px-0 py-1"><a class="text-decoration-none"
+                                        href="bdc.html">Bon de commande</a></li>
+                                <li class="dropdown-item px-0 py-1"><a class="text-decoration-none"
+                                        href="bdr.html">Bon de reception </a>
+                                </li>
+                                <li class="dropdown-item px-0 py-1"><a class="text-decoration-none"
+                                    href="facture.html">Factures </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+            <div class="accordion me-1" >
+                <div class="accordion-item">
+                    <h4 class="accordion-header">
+                        <button class="accordion-button collapsed fw-bold fs-15 text-white" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="true"
+                            aria-controls="collapse2">
+                            Vente
+                        </button>
+                    </h4>
+                    <div id="collapse2" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <ul class="list-style-none mb-0">
+                                <li class="dropdown-item px-0 py-1"><a class="text-decoration-none"
+                                        href="devis.html">Devis</a></li>
+                                <li class="dropdown-item px-0 py-1"><a class="text-decoration-none"
+                                        href="bdcc.html">Bons de comande</a>
+                                </li>
+                                <li class="dropdown-item px-0 py-1"><a class="text-decoration-none"
+                                    href="bdl.html">Bons de livraison</a>
+                                </li>
+                                <li class="dropdown-item px-0 py-1"><a class="text-decoration-none"
+                                    href="facturec.html">Factures</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <div class="accordion me-1" id="">
+                <div class="accordion-item">
+                    <h4 class="accordion-header">
+                        <button class="accordion-button collapsed fw-bold fs-10 text-white" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="true"
+                            aria-controls="collapse3">
+                            Gestion commerciale
+                        </button>
+                    </h4>
+                    <div id="collapse3" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <ul class="list-style-none mb-0">
+                                <li class="dropdown-item px-0 py-1"><a class="text-decoration-none"
+                                        href=".html">Facturation</a></li>
+                                <li class="dropdown-item px-0 py-1"><a class="text-decoration-none"
+                                        href=".html">Comptoir</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            
+
+        </div>
+
+        <div class="content w-100">
+            <nav class="navbar navbar-expand-md shadow">
+                <div class="container">
+                    <div class="d-md-none d-block">
+                        <button class="btn bg-black open-btn" onclick="appear() ">
+                            <i class="bi bi-filter-left text-white fs-3"></i>
+                        </button>
+                    </div>
+                    <a href=".html" class="navbar-brand">
+                        <img class="w-25" src=".webp" alt="picture">
+                    </a>
+
+                    <button type="button" class="btn btn-primary mt-3 mt-lg-0 me-md-0 me-2">
+                        </i> Deconnexion <i class="bi bi-box-arrow-right"></i>
+                    </button>
+                </div>
+            </nav>
+
+            <div class="container content-wrapper">
+                <div class="row">
+                    <div class="col-12 grid-margin stretch-card">
+                        <div class="card my-5 mx-md-5 mx-0 shadow">
+                            <div class="card-body">
+                                <h4 class="card-title">Articles</h4>
+                                <div class="ser_add">
+                                    <div class="input-group">
+                                        <div class="form-outline"><input style="width: 500px;" type="search" class="form-control rounded" placeholder="Rechercher" aria-label="Rechercher" aria-describedby="search-addon" />
+                                    </div>
+                                        <button type="button" class="btn btn-secondary">
+                                          <i class="fas fa-search"></i>
+                                        </button>
+                                      </div>
+                                      <div class="add">
+                                        <button type="button" class="btn bg-white border-success mr-2" data-bs-toggle="modal" data-bs-target="#modal">Ajouter nouveau <i class="bi bi-plus"></i></button>
+                                      </div>
+                                </div>
+                                <div class="table-responsive pt-5" id="big_table">
+                                    <table class="table table-light" style="overflow-y:auto;">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    Référence
+                                                </th>
+                                                <th>
+                                                    Désignation
+                                                </th>
+                                                <th>
+                                                    Famille
+                                                </th>
+                                                <th>
+                                                    Prix de vente
+                                                </th>
+                                                <th>
+                                                    Stock
+                                                </th>
+                                                <th>
+                                                    <center>Actions</center>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    0005
+                                                </td>
+
+                                                <td>
+                                                    Robinet
+                                                </td>
+                                                <td>
+                                                    Plomberie
+                                                </td>
+                                                <td>
+                                                    3000.05 XOF
+                                                </td>
+                                                <td>
+                                                    289
+                                                </td>
+                                                <td class="text-center">
+                                                    <button type="submit" class="btn btn-success mr-2" data-bs-toggle="modal" data-bs-target="#modal_details"><i class="fa fa-eye"></i></button>
+                                                    <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_modifier"> <i class="fa fa-pen"></i> </button>
+                                                    <button type="submit" class="btn btn-danger mr-2" data-bs-toggle="modal" data-bs-target="#modal_delete"><i class="fa fa-trash"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    0398
+                                                </td>
+
+                                                <td>
+                                                    Cuisinière
+                                                </td>
+                                                <td>
+                                                    Cuisine
+                                                </td>
+                                                <td>
+                                                    28000.00 XOF
+                                                </td>
+                                                <td>
+                                                    27
+                                                </td>
+                                                <td class="text-center">
+                                                    <button type="submit" class="btn btn-success mr-2" data-bs-toggle="modal" data-bs-target="#modal_details"><i class="fa fa-eye"></i></button>
+                                                    <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_modifier"> <i class="fa fa-pen"></i> </button>
+                                                    <button type="submit" class="btn btn-danger mr-2" data-bs-toggle="modal" data-bs-target="#modal_delete"><i class="fa fa-trash"></i></button>
+                                                </td>
+                                            </tr>
+                                            
+                                            <!-- MODIFIER -->
+                                    <div class="modal fade" data-bs-backdrop="static" id="modal_modifier">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header text-white">
+                                                    <h4 class="modal-title" aria-labelledby="modal title">
+                                                        Modifier article
+                                                    </h4>
+                                                    <button class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
+                                                </div>
+                                            <form action="">   
+                                                <div class="modal-body" aria-describedby="content">
+                                                    
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-success">Enregistrer <i class="bi bi-download"></i></button>
+                                                    
+                                                </div>
+                                            </form>     
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- DETAILS ARTICLES -->
+                                <div class="modal fade" data-bs-backdrop="static" id="modal_details">
+                                    <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header text-white">
+                                                    <h4 class="modal-title" aria-labelledby="modal title">
+                                                        Details 
+                                                    </h4>
+                                                    <button class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
+                                                </div>
+                                                <div class="modal-body" aria-describedby="content">
+                                                    
+                                                </div>
+                                                   
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                                                    <button type="button" class="btn btn-primary">Valider</button>
+                                                </div>
+                                            </div>
+                                        </div>   
+                                    </div>
+                                </div>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <br>
+                                     
+                                     <!--<button type="button" class="d-block mt-5 btn btn-primary mx-auto" data-bs-toggle="modal" data-bs-target="#modal">Nouveau</button>-->
+
+                                    <div class="modal fade" data-bs-backdrop="static" id="modal">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header text-white">
+                                                    <h4 class="modal-title" aria-labelledby="modal title">
+                                                        Nouvel article
+                                                    </h4>
+                                                    <button class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
+                                                </div>
+                                                <form action="">
+                                                <div class="modal-body" aria-describedby="content">
+                                                    <div class="tiltle1"><h5>Identification</h5></div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <label class="form-label">Référence</label>
+                                                            <input type="text" class="form-control" name="" required>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label class="form-label">Désignation</label>
+                                                            <input type="text" class="form-control" name="" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <label class="form-label">Code barre</label>
+                                                            <input type="text" class="form-control" name="" required>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label class="form-label">QR CODE</label>
+                                                            <input type="text" class="form-control" name="" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <label class="form-label">Famille</label>
+                                                            <input type="text" class="form-control" name="" required>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label class="form-label">Nature de l'article</label>
+                                                            <input type="text" class="form-control" name="" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <label class="form-label">Suivi de stock</label>
+                                                            <select id="" class="form-select" required>
+                                                                <option selected disabled value="">Aucun</option>
+                                                                <option value="">CMUP</option>
+                                                                <option value="">Sérialisé</option>
+                                                                <option value="">Lot et péremption</option>
+                                                                <option value="">LIFO</option>
+                                                                <option value="">FIFO</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label class="form-label">Dimension</label>
+                                                            <div class="dimension">
+                                                                <input type="text" class="form-control" name="" placeholder="Longueur" required>
+                                                                <input type="text" class="form-control" name="" placeholder="Largeur" required>
+                                                                <input type="text" class="form-control" name="" placeholder="Hauteur" required>
+                                                                <select id="" class="form-select" required>
+                                                                    <option selected disabled value="">cm</option>
+                                                                    <option value="">m</option>
+                                                                    <option value="">pied</option>
+                                                                    <option value="">pouce</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">Unité de poids</label>
+                                                            <div class="dimension" id="poids">
+                                                                <select id="" class="form-select" required>
+                                                                    <option selected disabled value="">Tonne</option>
+                                                                    <option value="">Quintal</option>
+                                                                    <option value="">Kilogramme</option>
+                                                                    <option value="">Gramme</option>
+                                                                    <option value="">Miligramme</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">Poids brut</label>
+                                                            <div class="dimension" id="poids">
+                                                                <input type="text" class="form-control" name="" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">Poids net</label>
+                                                            <div class="dimension" id="poids">
+                                                                <input type="text" class="form-control" name="" required>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <label class="form-label">Surface</label>
+                                                            <div class="dimension" id="poids">
+                                                                <input type="text" class="form-control" name="" required>
+                                                                <select id="" class="form-select" required>
+                                                                    <option selected disabled value="">cm²</option>
+                                                                    <option value="">m²</option>
+                                                                    <option value="">dm²</option>
+                                                                    <option value="">pouce²</option>
+                                                                    <option value="">pied²</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label class="form-label">Volume</label>
+                                                            <div class="dimension" id="poids">
+                                                                <input type="text" class="form-control" name="" required>
+                                                                <select id="" class="form-select" required>
+                                                                    <option selected disabled value="">cm³</option>
+                                                                    <option value="">m³</option>
+                                                                    <option value="">dm³</option>
+                                                                    <option value="">pouce³</option>
+                                                                    <option value="">pied³</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <label class="form-label">Catalogue</label>
+                                                            <select id="" class="form-select" required>
+                                                                <option selected disabled value=""></option>
+                                                                <option value=""></option>
+                                                                <option value=""></option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label class="form-label">Code douanier</label>
+                                                            <input type="text" class="form-control" name="" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <label class="form-label">Pays d'origine</label>
+                                                            <select id="" class="form-select" required>
+                                                                <option selected disabled value=""></option>
+                                                                <option value=""></option>
+                                                                <option value=""></option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label class="form-label">Description</label>
+                                                            <textarea class="form-control"  name="" id="" rows="1"></textarea>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="tiltle"><h5>Tarification</h5></div>
+                                                    
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">Prix d'achat</label>
+                                                            <div class="dimension" id="poids">
+                                                                <input type="text" class="form-control" name="" required>
+                                                                <select id="" class="form-select" required>
+                                                                    <option selected disabled value="">HT</option>
+                                                                    <option value="">TTC</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">Coefficient</label>
+                                                            <input type="text" id="coef" class="form-control" name="" required>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <label class="form-label">Prix de vente</label>
+                                                            <div class="dimension" id="poids">
+                                                                <input type="text" class="form-control" name="" required>
+                                                                <select id="" class="form-select" required>
+                                                                    <option selected disabled value="">HT</option>
+                                                                    <option value="">TTC</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tiltle"><h5>Stock</h5></div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <label class="form-label">Entrepôt</label>
+                                                            <select id="" class="form-select" required>
+                                                                <option selected disabled value=""></option>
+                                                                <option value=""></option>
+                                                                <option value=""></option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-6" id="coef">
+                                                            <label class="form-label">Emplacement</label>
+                                                            <input type="text" class="form-control" name="" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <label class="form-label">Stock alerte</label>
+                                                            <input type="text" class="form-control" name="" required>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label class="form-label">Stock optimal</label>
+                                                            <input type="text" class="form-control" name="" required>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="tiltle"><h5>Catégorie comptable</h5></div>
+                                                    <div class="table-responsive pt-5" id="big_table">
+                                                        <table class="table table-light" id="table" style="overflow-y:auto;">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>
+                                                                        Code
+                                                                    </th>
+                                                                    <th>
+                                                                        Intitulé
+                                                                    </th>
+                                                                    <th>
+                                                                        Compte G.
+                                                                    </th>
+                                                                    <th>
+                                                                        Intitulé
+                                                                    </th>
+                                                                    <th>
+                                                                        Section
+                                                                    </th>
+                                                                    <th>
+                                                                        Intitulé
+                                                                    </th>
+                                                                    <th>
+                                                                        Code Taxe 1 
+                                                                    </th>
+                                                                    <th>
+                                                                        Intitulé
+                                                                    </th>
+                                                                    <th>
+                                                                        Code Taxe 2
+                                                                    </th>
+                                                                    <th>
+                                                                        Intitulé
+                                                                    </th>
+                                                                    <th>
+                                                                        Code Taxe 3
+                                                                    </th>
+                                                                    <th>
+                                                                        Intitulé
+                                                                    </th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>
+                                                                        
+                                                                    </td>
+                    
+                                                                    <td>
+                                                                          
+                                                                    </td>
+                                                                    <td>
+                                                                        <select name="" class="form-select" id="">
+                                                                            <option value=""></option>
+                                                                        </select> 
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control" id="readonly" type="text" readonly>
+                                                                    </td>
+                                                                    <td>
+                                                                        <select name="" class="form-select" id="">
+                                                                            <option value=""></option>
+                                                                        </select> 
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control" id="readonly" type="text" readonly>
+                                                                    </td>
+                                                                    <td>
+                                                                        <select name="" class="form-select" id="">
+                                                                            <option value=""></option>
+                                                                        </select> 
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control" id="readonly" type="text" readonly>
+                                                                    </td>
+                                                                    <td>
+                                                                        <select name="" class="form-select" id="">
+                                                                            <option value=""></option>
+                                                                        </select> 
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control" id="readonly" type="text" readonly>
+                                                                    </td>
+                                                                    <td>
+                                                                        <select name="" class="form-select" id="">
+                                                                            <option value=""></option>
+                                                                        </select> 
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control" id="readonly" type="text" readonly>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                    
+                                                                    </td>
+                    
+                                                                    <td>
+                                                                          
+                                                                    </td>
+                                                                    <td>
+                                                                        <select name="" class="form-select" id="">
+                                                                            <option value=""></option>
+                                                                        </select> 
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control" id="readonly" type="text" readonly>
+                                                                    </td>
+                                                                    <td>
+                                                                        <select name="" class="form-select" id="">
+                                                                            <option value=""></option>
+                                                                        </select> 
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control" id="readonly" type="text" readonly>
+                                                                    </td>
+                                                                    <td>
+                                                                        <select name="" class="form-select" id="">
+                                                                            <option value=""></option>
+                                                                        </select> 
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control" id="readonly" type="text" readonly>
+                                                                    </td>
+                                                                    <td>
+                                                                        <select name="" class="form-select" id="">
+                                                                            <option value=""></option>
+                                                                        </select> 
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control" id="readonly" type="text" readonly>
+                                                                    </td>
+                                                                    <td>
+                                                                        <select name="" class="form-select" id="">
+                                                                            <option value=""></option>
+                                                                        </select> 
+                                                                    </td>
+                                                                    <td>
+                                                                        <input class="form-control" id="readonly" type="text" readonly>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>    
+                                                    </div>    
+                                                    <div class="tiltle"><h5></h5></div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <label class="form-label">Délais de livraison</label>
+                                                            <div class="dimension" id="poids">
+                                                                <input type="text" class="form-control" name="" required>
+                                                                <label for="">Jours</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label class="form-label">Délais de fabrication</label>
+                                                            <div class="dimension" id="poids">
+                                                                <input type="text" class="form-control" name="" required>
+                                                                <label for="">Jours</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <label class="form-label">Délais de garantie</label>
+                                                            <div class="dimension" id="poids">
+                                                                <input type="text" class="form-control" name="" required>
+                                                                <label for="">Jours</label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label class="form-label">Délais de peremption</label>
+                                                            <div class="dimension" id="poids">
+                                                                <input type="text" class="form-control" name="" required>
+                                                                <label for="">Jours</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="tiltle"><h5></h5></div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <label class="form-label">Nature du produit fabriqué</label>
+                                                                <select id="" class="form-select" required>
+                                                                    <option selected disabled value="">Composant</option>
+                                                                    <option value="">Pièces détachés</option>
+                                                                    <option value="">Produit fini</option>
+                                                                    <option value="">Produit semi fini</option>
+                                                                </select>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label class="form-label">Type de lancement</label>
+                                                                <select id="" class="form-select" required>
+                                                                    <option selected disabled value="">Standard</option>
+                                                                    <option value="">Spécifique</option>
+                                                                </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <label class="form-label">Cycle de vie</label>
+                                                                <select id="" class="form-select" required>
+                                                                    <option selected disabled value="">Lancement</option>
+                                                                    <option value="">Maturité</option>
+                                                                    <option value="">Fin de vie</option>
+                                                                </select>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label class="form-label">Colis</label>
+                                                            <input type="text" class="form-control" name="" required>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="tiltle"><h5></h5></div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <label class="form-label">Photo</label>
+                                                                <input type="file" class="form-label" name="" id="">
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label class="form-label">Champs libre</label>
+                                                            <select id="" class="form-select" required>
+                                                                <option selected disabled value=""></option>
+                                                                <option value=""></option>
+                                                                <option value=""></option>
+                                                            </select>
+                                                         </div>
+                                                    </div>
+                                                    <div class="row" >
+                                                        <div class="col-md-6">
+                                                            <div id="pdf">
+                                                                <label class="form-label">Fichier PDF</label>
+                                                                <button type="button" class="btn btn-secondary" id="generateBtn"><i class="bi bi-plus"></i></button>
+                                                            </div>
+                                                            <div id="champsContainer">
+                                                                <div class="champ">
+                                                                    <input type="file" class="form-label" name="" id="">
+                                                                </div> 
+                                                            </div>       
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-success">Enregistrer <i class="bi bi-download"></i></button>
+                                                    
+                                                </div>
+                                            </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- MESSAGE SUPRESSION -->
+                                    <div class="modal fade" data-bs-backdrop="static" id="modal_delete">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content" id="md_delete">
+                                                <div class="modal-header text-white">
+                                                    <h5 class="modal-title" aria-labelledby="modal title">
+                                                        Supprimer article
+                                                    </h5>
+                                                    <button class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
+                                                </div>
+                                                <div class="modal-body" aria-describedby="content">
+                                                     <p>Voulez vous supprimer cet article ?</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Oui</button>
+                                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Non</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                        
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- content-wrapper ends -->
+
+            
+            
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
+        </script>
+
+    <script type="text/javascript">
+        function appear() {
+            var div = document.getElementById("side_nav")
+            if (div.style.display == "none") {
+                div.style.display = "block";
+            } else {
+                div.style.display = "none";
+            }
+        }
+
+
+        const onglets = document.querySelectorAll('.onglets');
+        const contenu = document.querySelectorAll('.contenu');
+        let produit = 0;
+
+        onglets.forEach(onglet => {
+                onglet.addEventListener('click', () => {
+                if (onglet.classList.contains('active')){
+                    return;
+                }else{
+                    onglet.classList.add('active');
+                }
+
+                produit = onglet.getAttribute('data-anim');
+                console.log(produit);
+
+                for(i = 0; i < onglets.length; i++){
+
+                    if(onglets[i].getAttribute('data-anim')!= produit){
+                        onglets[i].classList.remove('active')
+                    }  
+                }
+                for(j = 0; j < contenu.length; j++){
+                    if(contenu[j].getAttribute('data-anim') == produit){
+                        contenu[j].classList.add('activeContenu');
+                    } else{
+                        contenu[j].classList.remove('activeContenu');
+                    }
+                }
+                
+            })
+        })
+
+        // Fonction pour générer un nouveau champ
+function genererChamp() {
+    var container = document.getElementById('champsContainer');
+    var champExist = document.querySelector('.champ');
+  
+    // Créer une copie du champ existant
+    var nouveauChamp = champExist.cloneNode(true);
+    
+    // Modifier le nom du nouveau champ en ajoutant un suffixe unique
+    var suffixe = container.childElementCount + 1;
+    nouveauChamp.name = 'champ' + suffixe;
+  
+    // Ajouter le nouveau champ au conteneur
+    container.appendChild(nouveauChamp);
+  }
+  
+  // Associer la fonction de génération au clic sur le bouton
+  var btn = document.getElementById('generateBtn');
+  btn.addEventListener('click', genererChamp);
+  
+        
+    </script>
+
+</body>
+
+</html>
