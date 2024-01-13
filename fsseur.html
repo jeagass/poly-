@@ -284,9 +284,30 @@
                         <img class="w-25" src=".webp" alt="picture">
                     </a>
 
-                    <button type="button" class="btn btn-primary mt-3 mt-lg-0 me-md-0 me-2">
+                    <button type="button" class="btn btn-primary mt-3 mt-lg-0 me-md-0 me-2" data-bs-toggle="modal" data-bs-target="#modal_deco">
                         </i> Deconnexion <i class="bi bi-box-arrow-right"></i>
                     </button>
+
+                    <!-- MESSAGE Deconnexion -->
+                    <div class="modal fade" data-bs-backdrop="static" id="modal_deco">
+                        <div class="modal-dialog">
+                            <div class="modal-content" id="md_delete">
+                                <div class="modal-header text-white">
+                                    <h5 class="modal-title" aria-labelledby="modal title">
+                                        Deconnexion
+                                    </h5>
+                                    <button class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
+                                </div>
+                                <div class="modal-body" aria-describedby="content">
+                                     <p>Souhaitez-vous vous déconnecter ?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"><a style="text-decoration: none; color: white;" href="login.html">Oui</a></button>
+                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Non</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </nav>
 
